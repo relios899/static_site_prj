@@ -35,7 +35,7 @@ class TestGenerateHTMLFromMD(unittest.TestCase):
     def test_generation_w_code(self):
         text = "```test test test```"
         output = markdown_to_html_node(text)
-        self.assertEqual(output.to_html(), """<div><code>test test test</code></div>""")
+        self.assertEqual(output.to_html(), """<div><pre><code>test test test</code></pre></div>""")
 
     def test_generation_w_quote(self):
         text = ">test test"
@@ -55,3 +55,6 @@ class TestGenerateHTMLFromMD(unittest.TestCase):
         output = markdown_to_html_node(text)
         self.assertEqual(output.to_html(), """<div><ol><li>test</li><li>test2</li><li>test3</li></ol></div>""")
 
+    def test_get_title(self):
+        md = "# Test"
+        self.assertEqual(extract_title(md),"Test")
